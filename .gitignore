@@ -1,0 +1,7 @@
+# n8n data and databases
+n8n_data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.log
+crash.journal
