@@ -318,7 +318,7 @@ export default function AISdrDemo() {
     setTyping(true);
 
     try {
-      const res = await fetch("http://localhost:5678/webhook/chat", {
+      const res = await fetch("n8n-production-37c3.up.railway.app/webhook/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
