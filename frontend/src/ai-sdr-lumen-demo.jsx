@@ -278,6 +278,7 @@ export default function AISdrDemo() {
 
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const qualifiedRef = useRef(null);
 
   const transcript = useMemo(() => conversationToText(history), [history]);
   const summaryCards = useMemo(() => getSummaryCards(lead, history), [lead, history]);
@@ -285,8 +286,24 @@ export default function AISdrDemo() {
   const pCfg = lead?.priority ? PRIORITY_CFG[lead.priority] : null;
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chat, typing]);
+    if (!done) {
+      bottomRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [chat, typing, done]);
+
+  useEffect(() => {
+    if (!done || !lead?.show_calendly) return;
+
+    setTimeout(() => {
+      qualifiedRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 350);
+
+  }, [done, lead]);
 
   useEffect(() => {
     if (!done || !lead) return;
@@ -789,6 +806,7 @@ export default function AISdrDemo() {
 
                   {done && lead?.show_calendly && (
                     <div
+                      ref={qualifiedRef}
                       style={{
                         marginTop: 4,
                         borderRadius: 28,

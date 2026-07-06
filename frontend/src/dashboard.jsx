@@ -738,8 +738,23 @@ export default function DashboardPage() {
                       </div>
                     </SectionCard>
 
-                    <section style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.2fr) minmax(320px, 0.8fr)", gap: 18, minHeight: 0 }} className="aisdr-main-grid">
-                      <div style={{ display: "grid", gap: 18, minWidth: 0 }}>
+                    <section
+                    style={{
+                    display:"grid",
+                    gridTemplateColumns:
+                    "minmax(0, 1.2fr) minmax(320px, 0.8fr)",
+                    gap:18,
+                    minHeight:0,
+                    alignItems:"start"
+                    }} className="aisdr-main-grid">
+                      <div
+                      style={{
+                      display:"grid",
+                      gap:18,
+                      minWidth:0,
+                      alignContent:"start"
+                      }}
+                      >
                         <SectionCard>
                           <SectionTitle eyebrow="Pipeline" title="Lead distribution" action="Hot / Warm / Cold" />
                           <div style={{ display: "grid", gap: 14 }}>
