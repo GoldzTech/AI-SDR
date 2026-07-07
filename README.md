@@ -1,110 +1,84 @@
 # AI SDR — Lead Qualification Agent
 
-AI SDR is a conversational lead qualification system for marketing and growth agencies. It combines an AI chat experience with workflow automation to qualify visitors, persist structured CRM data, notify the sales team, and present a booking CTA for high-intent leads.
+AI SDR is an AI-powered lead qualification platform for marketing and growth teams. It turns a visitor conversation into structured CRM data, notifies sales in real time, and presents a booking CTA for high-intent leads.
 
 ## What it does
 
-- Qualifies website visitors through a natural chat experience.
-- Collects structured CRM data such as company, contact, industry, budget, decision maker, timeline, and preferred contact method.
-- Sends hot leads to Slack in real time.
+- Qualifies visitors through a natural chat experience.
+- Captures CRM data such as company, contact, industry, budget, decision maker, timeline, and contact method.
 - Stores leads and conversation history in Airtable.
-- Displays a Calendly call-to-action when the lead is qualified.
-- Provides an internal dashboard for reviewing leads, conversations, and automation status.
+- Sends hot leads to Slack instantly.
+- Displays a Calendly CTA for qualified leads.
+- Powers an internal dashboard for lead analytics and conversation review.
 
 ## Live flow
 
-`Visitor → AI Chat → n8n → Airtable → Slack → Calendly → Dashboard`
+`Visitor → React Chat → n8n → Airtable → Slack → Calendly → Dashboard`
 
-## Main features
+## Features
 
-- AI-powered lead qualification
+- AI-powered qualification
 - Persistent conversation history
 - Hot / warm / cold lead classification
 - Structured CRM storage
-- Slack notification for sales follow-up
-- Calendly booking CTA for qualified leads
-- Internal dashboard for lead analytics and conversation review
-- Dark, premium SaaS-style UI
+- Real-time Slack alerts
+- Calendly booking CTA
+- Live dashboard for lead review
+- Dark SaaS-style UI
 
 ## Tech stack
 
-### Frontend
+**Frontend**
 - React
 - Vite
 - JavaScript / JSX
-- Tailwind-inspired visual system and custom styling
 
-### Automation / backend layer
+**Automation + data**
 - n8n
 - OpenAI Responses API
 - Airtable
 - Slack
 - Calendly
 
-## Project structure
-
-```text
-frontend/
-  src/
-    ai-sdr-lumen-demo.jsx
-    dashboard.jsx
-    main.jsx
-    App.jsx
-    index.css
-workflows/
-  ai-sdr.json
-screenshots/
-README.md
-```
-
-## How the system works
-
-### 1. Visitor chat
-The visitor talks to Ava, the AI SDR assistant, and answers one question at a time.
-
-### 2. Qualification
-The assistant extracts structured information and decides whether the lead is hot, warm, or cold.
-
-### 3. CRM storage
-Airtable stores:
-- lead metadata
-- qualification fields
-- conversation history
-- next steps
-
-### 4. Sales notification
-Hot leads generate a Slack message with the most important CRM fields.
-
-### 5. Calendly CTA
-Qualified leads can receive a booking CTA to schedule a call.
-
-### 6. Dashboard
-The dashboard reads real data from the n8n / Airtable workflow and displays:
-- total leads
-- hot / warm / cold distribution
-- recent leads
-- selected lead details
-- conversation summaries
-- automation status
-
 ## Screenshots
 
-> No images yet
+### Architecture
+![AI SDR architecture](./assets/screenshots/AI-SDR_architecture.png)
 
-### Chat demo
-![AI SDR chat demo](./screenshots/chat-demo.png)
+### Chat
+![AI SDR chat demo](./assets/screenshots/AI-SDR_chat.png)
 
-### Dashboard overview
-![AI SDR dashboard overview](./screenshots/dashboard-overview.png)
+### Qualified lead
+![AI SDR qualified lead](./assets/screenshots/AI-SDR_qualified.png)
+
+### Dashboard
+![AI SDR dashboard overview](./assets/screenshots/AI-SDR_dashboard.png)
 
 ### Lead details
-![AI SDR lead details](./screenshots/lead-details.png)
+![AI SDR lead details](./assets/screenshots/AI-SDR_lead_details.png)
+
+### Airtable
+![AI SDR Airtable integration](./assets/screenshots/AI-SDR_airtable.png)
+
+### n8n
+![AI SDR n8n workflow](./assets/screenshots/AI-SDR_n8n.png)
+
+### Slack
+![AI SDR Slack notification](./assets/screenshots/AI-SDR_slack.png)
 
 ## Demo video
 
 > Add the final demo video link here.
 
-**Video link:** _TBD_
+**Video:** TBD
+
+## How it works
+
+1. The visitor talks to Ava, the AI SDR assistant.
+2. The assistant asks one question at a time and extracts structured CRM fields.
+3. n8n classifies the lead and stores the data in Airtable.
+4. Hot leads trigger a Slack alert and a Calendly CTA.
+5. The dashboard reads the same live data for analytics and review.
 
 ## Setup
 
@@ -119,10 +93,6 @@ The dashboard reads real data from the n8n / Airtable workflow and displays:
 
 ### Environment variables
 
-Create a `.env` file for the frontend and/or n8n environment with the values required by your setup.
-
-Example variables:
-
 ```bash
 VITE_N8N_WEBHOOK_URL=http://localhost:5678/webhook
 VITE_N8N_DASHBOARD_URL=http://localhost:5678/webhook/dashboard
@@ -135,41 +105,41 @@ CALENDLY_URL=https://calendly.com/your-booking-link
 
 ## Run locally
 
-### Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### n8n
-Run your n8n instance and import the workflow JSON from the `workflows/` folder.
+Then run your n8n instance and import the workflow JSON.
 
 ## Deploy
 
-Recommended free/low-cost deployment path:
+Recommended stack:
 
 - **Frontend:** Vercel
-- **Automation / workflow layer:** n8n hosted or self-hosted
+- **Automation:** n8n
 - **CRM:** Airtable
 - **Notifications:** Slack
 - **Scheduling:** Calendly
 
+## Repository structure
+
+```text
+assets/
+  screenshots/
+frontend/
+n8n_data/
+prompts/
+docker-compose.yml
+README.md
+```
+
 ## Notes
 
-- The dashboard is designed to consume live data from the automation workflow.
-- The UI is intentionally built to look like a real SaaS product, not just a one-off demo.
-- Conversation history and CRM data are separated so the dashboard can show both structured lead data and the full transcript.
-
-## Roadmap
-
-- [ ] Add filters to the dashboard
-- [ ] Add search for leads and conversations
-- [ ] Add live auto-refresh
-- [ ] Add lead detail drawer
-- [ ] Add analytics charts
-- [ ] Add production deployment
-- [ ] Add final demo video and screenshots
+- The dashboard is connected to live workflow data.
+- Conversation history is separated from structured CRM fields.
+- The UI is intentionally designed to feel like a real SaaS product.
 
 ## License
 
